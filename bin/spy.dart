@@ -28,7 +28,7 @@ void main(List<String> arguments) async {
     return printUsage(parser);
   }
 
-  var token = args['token'];
+  var token = args['github-token'];
   var gh = GitHub(auth: Authentication.withToken(token));
   var db = Uri.https('www.privacyspy.org', '/api/v2/index.json');
 
