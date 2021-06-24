@@ -40,7 +40,7 @@ void main(List<String> arguments) async {
 }
 
 search(String slug, GitHub gh) async {
-  var req = Uri.https('www.privacyspy.org', '/api/v2/product/$slug.json');
+  var req = Uri.https('www.privacyspy.org', '/api/v2/products/$slug.json');
   var res = await http.get(req);
   if (res.statusCode == 200) {
     var body = convert.jsonDecode(res.body);
