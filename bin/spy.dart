@@ -44,6 +44,7 @@ search(String slug, GitHub gh) async {
   var res = await http.get(req);
   if (res.statusCode == 200) {
     var pBody = convert.jsonDecode(res.body);
+    var policies = pBody.sources.forEach((v) => v.append());
     var i = 0;
     for (i; policies.length; i++) {
       var resp = await http.get(policies[i]);
