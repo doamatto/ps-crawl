@@ -12,7 +12,7 @@ void main(List<String> arguments) async {
   var parser = ArgParser();
   parser.addOption(
     'github-token',
-    abbr: 'token',
+    abbr: 't',
     help:
         'Provide a GitHub token to make GitHub issues to the PrivacySpy repository.',
     valueHelp: 'github-token',
