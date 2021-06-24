@@ -43,8 +43,7 @@ search(String slug, GitHub gh) async {
   var req = Uri.https('www.privacyspy.org', '/api/v2/products/$slug.json');
   var res = await http.get(req);
   if (res.statusCode == 200) {
-    var body = convert.jsonDecode(res.body);
-    var policies = body.sources.forEach((v) => v.append());
+    var pBody = convert.jsonDecode(res.body);
     var i = 0;
     for (i; policies.length; i++) {
       var resp = await http.get(policies[i]);
