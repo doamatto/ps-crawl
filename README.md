@@ -6,7 +6,7 @@ Using this bot is incredibly easy. After building it (see next section or click 
 $ ./bin/spy --github-token=<github-token>
 ```
 
-You can get a GitHub (Personal) token [here](https://github.com/settings/tokens). Ensure that you give your token the `public_repo` scope, so that it can make issues. This bot is made on purpose not to be too expandable, as there is little to no need. See [the future ideas](#future-ideas) for any ideas in the future of how this may change.
+You can get a GitHub (Personal) token [here](https://github.com/settings/tokens). Ensure that you give your token the `public_repo` scope, so that it can make issues. This bot is made on purpose not to be too expandable, as there is little to no need. See [the future ideas](#future-ideas) for any ideas in the future of how this may change. You can use `-v` or `--verbose` to enable verbose logging to make it easy to debug either the bot or PrivacySpy.
 
 ## Building
 1. Install [Dart](https://dart.dev)
