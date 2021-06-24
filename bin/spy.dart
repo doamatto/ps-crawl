@@ -4,6 +4,9 @@ import 'package:args/args.dart';
 import 'package:github/github.dart';
 import 'package:http/http.dart' as http;
 
+import './lib/github.dart';
+import './lib/usage.dart';
+
 void main(List<String> arguments) async {
   var parser = ArgParser();
   parser.addOption(
