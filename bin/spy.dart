@@ -31,11 +31,11 @@ void main(List<String> arguments) async {
   var resp = await http.get(db);
   if (resp.statusCode == 200) {
     var jsonRes = convert.jsonDecode(resp.body);
-    jsonRes.slug.forEach(() => search(jsonRes.slug));
+    jsonRes.slug.forEach(() => search(jsonRes.slug, gh));
   }
 }
 
-search(String slug) async {
+search(String slug, GitHub gh) async {
   var req = Uri.https('www.privacyspy.org', '/api/v2/product/$slug.json');
   var res = await http.get(req);
   if (res.statusCode == 200) {
