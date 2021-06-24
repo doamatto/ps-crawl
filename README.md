@@ -12,7 +12,7 @@ You can get a GitHub (Personal) token [here](https://github.com/settings/tokens)
 1. Install [Dart](https://dart.dev)
 2. Fetch dependencies (`dart pub get`)
 
-To build binaries, use `dart compile exe bin/spy.dart`
+To build binaries, use `dart compile exe bin/spy.dart`. Regardless of platform, the `exe` parameter will compile a binary for your OS (Linux, macOS, Windows, et al).
 
 ## Future ideas
 - [ ] Allowing custom PrivacySpy instances (defaults to official)
