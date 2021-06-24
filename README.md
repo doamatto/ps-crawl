@@ -8,6 +8,9 @@
 
 To build binaries, use `dart compile exe bin/spy.dart`
 
+## Future ideas
+- [ ] Allowing custom PrivacySpy instances (defaults to official)
+
 ## Acknowledgments
 This project is licensed under the GNU General Public License version 3.0. You can see a copy of it in the `LICENSE` file in the root of this repository.
 
