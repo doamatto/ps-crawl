@@ -5,6 +5,7 @@ import 'package:github/github.dart';
 import 'package:http/http.dart' as http;
 
 import './lib/github.dart';
+import './lib/scrub.dart';
 import './lib/usage.dart';
 
 void main(List<String> arguments) async {
@@ -50,34 +51,31 @@ search(String slug, GitHub gh) async {
       var resp = await http.get(policies[i]);
       if (resp.statusCode == 200) {
         var body = resp.body;
-        throw UnimplementedError();
+        var px = 0;
+        for (px; pBody.rubric.length <= px; px++) {
+          if (pBody.rubric[px].citations.length >= 1) {
+            var cx = 0;
+            for (cx; pBody.rubric[px].citations.length <= cx; cx++) {
+              if (scrubCitation(body, pBody.rubric[px].citation[cx])) {
+                print("[PASS] $pBody.rubric[px].slug passed for $slug.");
+              } else {
+                createIssue(
+                    gh, slug, pBody.rubric[px].citation[i], pBody.policies[i]);
+              }
+            }
+          } else {
+            if (scrubCitation(body, pBody.rubric[px].citations[0])) {
+              print("[PASS] $pBody.rubric[px].slug passed for $slug.");
+            } else {
+              createIssue(
+                  gh, slug, pBody.rubric[px].citation[i], pBody.policies[i]);
+            }
+          }
+        }
       }
     }
   }
-}
-
-createIssue(GitHub gh, String product, String quote, String url) {
-  gh.issues.create(
-    RepositorySlug('politiwatch', 'privacyspy'),
-  IssueRequest(
-    title: 'Citation for $product not found',
-    body:
-        'The product, [$product,]($url) has a missing quote.\n\n```$quote```---I\'m just a bot, so I\'m not perfect. Let us know if I\'ve made a mistake. :relaxed:',
-    labels: ['product', 'help wanted', 'problem'],
-    ),
-  );
-}
-
-void printUsage(ArgParser parser) {
-  print('');
-  print('PrivacySpy Bot – Time to track some online privacy.');
-  print('Licensed under the GNU General Public license (v3.0).');
   print(
-    'Developed while stalking privacy policies by Matt Ronchetto (doamatto).',
-  );
-  print('Source: https://github.com/doamatto/privacyspy-bot');
-  print('');
-  print('=== === ===');
-  print('');
-  print(parser.usage);
+      "Looks like justice has been served, issues made, and the world saved.");
+  return;
 }
