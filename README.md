@@ -18,6 +18,8 @@ To build binaries, use `dart compile exe bin/spy.dart`. Regardless of platform, 
 - [ ] Allowing custom PrivacySpy instances (defaults to official)
 - [ ] Typings for expected responses to allow both null-safety and piece of mind
 - [ ] Allowing custom PrivacySpy forks (defaults to official)
+- [ ] Ensure rendering of hydrated content works fine
+- [ ] Ensure weird text (that one apostrophe that is an apostrophe but isn't) doesn't break things
 
 ## Acknowledgments
 This project is licensed under the GNU General Public License version 3.0. You can see a copy of it in the `LICENSE` file in the root of this repository.
