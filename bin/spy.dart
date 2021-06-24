@@ -35,6 +35,7 @@ void main(List<String> arguments) async {
   if (resp.statusCode == 200) {
     var jsonRes = convert.jsonDecode(resp.body);
     jsonRes.slug.forEach(() => search(jsonRes.slug, gh));
+    return;
   }
 }
 
