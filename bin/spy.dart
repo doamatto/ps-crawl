@@ -57,8 +57,13 @@ void main(List<String> arguments) async {
     if (v) {
       print('[3/8] Parsing product index into JSON');
     }
-    jsonRes.slug.forEach(() => search(jsonRes.slug, gh, v));
-    return;
+    for (var product in jsonRes) {
+      search(
+        product['slug'],
+        gh,
+        v,
+      );
+    }
   }
 }
 
