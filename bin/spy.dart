@@ -112,6 +112,7 @@ search(String slug, GitHub gh, bool v) async {
                 gh,
                 slug,
                 citation,
+                rubricItem['question']['slug'],
                 policy,
               );
             }
