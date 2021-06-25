@@ -29,6 +29,11 @@ void main(List<String> arguments) async {
     help:
         'Good for CIs and development (removes the silence of nothing in the console while it works).',
   );
+  parser.addFlag(
+    'ci-mode',
+    help:
+        'Pairs nicely with the verbosity flag (-v). Doesn\'t create GitHub issues.',
+  );
 
   var args = parser.parse(arguments);
   if (args['help'] == true) {
@@ -37,14 +42,19 @@ void main(List<String> arguments) async {
   if (args['github-token'] == '') {
     return printUsage(parser);
   }
-
   var token = args['github-token'];
   var v = args['verbose'];
-  var gh = GitHub(
-    auth: Authentication.withToken(token),
-  );
-  if (v) {
-    print('[1/8] Authenticating with GitHub');
+  var ciMode = args['ci-mode'];
+  GitHub gh;
+  if (ciMode == false) {
+    if (v) {
+      print('Authenticating with GitHub');
+    }
+    gh = GitHub(
+      auth: Authentication.withToken(token),
+    );
+  } else {
+    gh = GitHub();
   }
   var db = Uri.https('www.privacyspy.org', '/api/v2/index.json');
 
@@ -58,11 +68,7 @@ void main(List<String> arguments) async {
       print('[3/8] Parsing product index into JSON');
     }
     for (var product in jsonRes) {
-      await search(
-        product['slug'],
-        gh,
-        v,
-      );
+      await search(product['slug'], gh, v, ciMode, onlyFail);
     }
     print(
       "Looks like justice has been served, issues made, and the world saved.",
@@ -76,7 +82,7 @@ void main(List<String> arguments) async {
   }
 }
 
-search(String slug, GitHub gh, bool v) async {
+search(String slug, GitHub gh, bool v, bool ciMode, bool onlyFail) async {
   var req = Uri.https('www.privacyspy.org', '/api/v2/products/$slug.json');
   var res = await http.get(req);
   if (v) {
@@ -108,13 +114,15 @@ search(String slug, GitHub gh, bool v) async {
                 var policySlug = rubricItem['question']['slug'];
                 print('[FAIL] $slug for $policySlug');
               }
-              createIssue(
-                gh,
-                slug,
-                citation,
-                rubricItem['question']['slug'],
-                policy,
-              );
+              if (ciMode == false) {
+                createIssue(
+                  gh,
+                  slug,
+                  citation,
+                  rubricItem['question']['slug'],
+                  policy,
+                );
+              }
             }
           }
         }
