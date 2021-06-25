@@ -58,7 +58,7 @@ void main(List<String> arguments) async {
       print('[3/8] Parsing product index into JSON');
     }
     for (var product in jsonRes) {
-      search(
+      await search(
         product['slug'],
         gh,
         v,
