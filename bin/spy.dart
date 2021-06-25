@@ -53,7 +53,7 @@ void main(List<String> arguments) async {
     print('[2/8] Fetching product index');
   }
   if (resp.statusCode == 200) {
-    var jsonRes = convert.jsonDecode(resp.body);
+    var jsonRes = await convert.jsonDecode(resp.body);
     if (v) {
       print('[3/8] Parsing product index into JSON');
     }
