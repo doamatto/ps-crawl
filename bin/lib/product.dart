@@ -5,7 +5,7 @@ class Product {
   final List<dynamic> sources;
   final String icon;
   final String slug;
-  final double score;
+  final num score; // Implemented by double and int; both of which are used
   final String? parent;
   final List<dynamic> children;
   final dynamic rubric;
