@@ -34,6 +34,10 @@ void main(List<String> arguments) async {
     help:
         'Pairs nicely with the verbosity flag (-v). Doesn\'t create GitHub issues.',
   );
+  parser.addFlag(
+    'only-fail',
+    help: 'Omits any failures from logs. Only needed for verbose.',
+  );
 
   var args = parser.parse(arguments);
   if (args['help'] == true) {
@@ -45,6 +49,8 @@ void main(List<String> arguments) async {
   var token = args['github-token'];
   var v = args['verbose'];
   var ciMode = args['ci-mode'];
+  var onlyFail = args['only-fail'];
+
   GitHub gh;
   if (ciMode == false) {
     if (v) {
@@ -105,7 +111,7 @@ search(String slug, GitHub gh, bool v, bool ciMode, bool onlyFail) async {
         for (var rubricItem in pBody.rubric) {
           for (var citation in rubricItem['citations']) {
             if (scrubCitation(body, citation)) {
-              if (v) {
+              if (v == true && onlyFail == false) {
                 var policySlug = rubricItem['question']['slug'];
                 print('[PASS] $slug for $policySlug');
               }
