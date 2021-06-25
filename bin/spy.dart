@@ -34,6 +34,9 @@ void main(List<String> arguments) async {
   if (args['help'] == true) {
     return printUsage(parser);
   }
+  if (args['github-token'] == '') {
+    return printUsage(parser);
+  }
 
   var token = args['github-token'];
   var v = args['verbose'];
