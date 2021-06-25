@@ -88,59 +88,31 @@ search(String slug, GitHub gh, bool v) async {
       print('[5/8] Parsing $slug\'s JSON');
     }
     var policies = pBody.sources;
-    var i = 0;
-    for (i; policies.length <= i; i++) {
-      var url = Uri.parse(policies[i]);
+    for (var policy in policies) {
+      var url = Uri.parse(policy);
       var resp = await http.get(url);
       if (v) {
-        print('[6/8] Fetching $slug\'s policy ($i)');
+        print('[6/8] Fetching $slug\'s policy ($policy)');
       }
       if (resp.statusCode == 200) {
         var body = resp.body;
-        var px = 0;
-        for (px; pBody.rubric.length <= px; px++) {
-          if (pBody.rubric[px].citations.isNotEmpty) {
-            var cx = 0;
-            for (cx; pBody.rubric[px].citations.length <= cx; cx++) {
+        for (var rubricItem in pBody.rubric) {
+          for (var citation in rubricItem['citations']) {
+            if (scrubCitation(body, citation)) {
               if (v) {
-                var cite = pBody.rubric[px].citations[cx];
-                print('[7/8] Scrubbing $cite for issues');
-              }
-              if (scrubCitation(
-                body,
-                pBody.rubric[px].citations[cx],
-              )) {
-                print("[PASS] $pBody.rubric[px].slug passed for $slug.");
-              } else {
-                createIssue(
-                  gh,
-                  slug,
-                  pBody.rubric[px].citations[i],
-                  pBody.sources[i],
-                );
-              }
+                var policySlug = rubricItem['question']['slug'];
+                print('[PASS] $slug for $policySlug');
             }
           } else {
             if (v) {
-              var cite = pBody.rubric[px].citations[0];
-              print('[7/8] Scrubbing $cite for issues');
-            }
-            if (scrubCitation(
-              body,
-              pBody.rubric[px].citations[0],
-            )) {
-              var rubricSlug = pBody.rubric[px].question.slug;
-              print("[PASS] $rubricSlug passed for $slug.");
-            } else {
-              if (v) {
-                var rubricSlug = pBody.rubric[px].question.slug;
-                print('[8/8] Generating issue for $slug ($rubricSlug)');
+                var policySlug = rubricItem['question']['slug'];
+                print('[FAIL] $slug for $policySlug');
               }
               createIssue(
                 gh,
                 slug,
-                pBody.rubric[px].citations[i],
-                pBody.sources[i],
+                citation,
+                policy,
               );
             }
           }
