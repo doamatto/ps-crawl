@@ -93,10 +93,13 @@ search(String slug, GitHub gh, bool v) async {
             var cx = 0;
             for (cx; pBody.rubric[px].citations.length <= cx; cx++) {
               if (v) {
-                var cite = pBody.rubric[px].citation[cx];
+                var cite = pBody.rubric[px].citations[cx];
                 print('[7/8] Scrubbing $cite for issues');
               }
-              if (scrubCitation(body, pBody.rubric[px].citation[cx])) {
+              if (scrubCitation(
+                body,
+                pBody.rubric[px].citations[cx],
+              )) {
                 print("[PASS] $pBody.rubric[px].slug passed for $slug.");
               } else {
                 createIssue(
@@ -109,11 +112,13 @@ search(String slug, GitHub gh, bool v) async {
             }
           } else {
             if (v) {
-              var cite = pBody.rubric[px].citation[0];
+              var cite = pBody.rubric[px].citations[0];
               print('[7/8] Scrubbing $cite for issues');
             }
-            if (scrubCitation(body, pBody.rubric[px].citations[0])) {
-              var rubricSlug = pBody.rubric[px].slug;
+            if (scrubCitation(
+              body,
+              pBody.rubric[px].citations[0],
+            )) {
               print("[PASS] $rubricSlug passed for $slug.");
             } else {
               if (v) {
