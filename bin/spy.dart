@@ -5,6 +5,7 @@ import 'package:github/github.dart';
 import 'package:http/http.dart' as http;
 
 import './lib/github.dart';
+import './lib/product.dart';
 import './lib/scrub.dart';
 import './lib/usage.dart';
 
@@ -63,7 +64,7 @@ search(String slug, GitHub gh, bool v) async {
     print('[4/8] Fetching $slug\'s JSON');
   }
   if (res.statusCode == 200) {
-    var pBody = convert.jsonDecode(res.body);
+    var pBody = Product.fromJson(convert.jsonDecode(res.body));
     if (v) {
       print('[5/8] Parsing $slug\'s JSON');
     }
