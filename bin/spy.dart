@@ -102,9 +102,9 @@ search(String slug, GitHub gh, bool v) async {
               if (v) {
                 var policySlug = rubricItem['question']['slug'];
                 print('[PASS] $slug for $policySlug');
-            }
-          } else {
-            if (v) {
+              }
+            } else {
+              if (v) {
                 var policySlug = rubricItem['question']['slug'];
                 print('[FAIL] $slug for $policySlug');
               }
