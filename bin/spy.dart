@@ -64,6 +64,13 @@ void main(List<String> arguments) async {
         v,
       );
     }
+    print(
+      "Looks like justice has been served, issues made, and the world saved.",
+    );
+  } else {
+    print(
+      "It appears there was troubles connecting to the Internet. Make sure you can reach PrivacySpy's website (https://privacyspy.org/api).",
+    );
   }
 }
 
@@ -138,7 +145,5 @@ search(String slug, GitHub gh, bool v) async {
       }
     }
   }
-  print(
-      "Looks like justice has been served, issues made, and the world saved.");
   return;
 }
