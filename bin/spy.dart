@@ -78,7 +78,7 @@ search(String slug, GitHub gh, bool v) async {
     if (v) {
       print('[5/8] Parsing $slug\'s JSON');
     }
-    var policies = pBody.sources.forEach((policies) => policies.append());
+    var policies = pBody.sources;
     var i = 0;
     for (i; policies.length; i++) {
       var resp = await http.get(policies[i]);
