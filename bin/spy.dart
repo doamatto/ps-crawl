@@ -90,7 +90,11 @@ search(String slug, GitHub gh, bool v) async {
                 print("[PASS] $pBody.rubric[px].slug passed for $slug.");
               } else {
                 createIssue(
-                    gh, slug, pBody.rubric[px].citation[i], pBody.policies[i]);
+                  gh,
+                  slug,
+                  pBody.rubric[px].citations[i],
+                  pBody.sources[i],
+                );
               }
             }
           } else {
@@ -107,7 +111,11 @@ search(String slug, GitHub gh, bool v) async {
                 print('[8/8] Generating issue for $slug ($rubricSlug)');
               }
               createIssue(
-                  gh, slug, pBody.rubric[px].citation[i], pBody.policies[i]);
+                gh,
+                slug,
+                pBody.rubric[px].citations[i],
+                pBody.sources[i],
+              );
             }
           }
         }
