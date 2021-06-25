@@ -89,7 +89,7 @@ search(String slug, GitHub gh, bool v) async {
         var body = resp.body;
         var px = 0;
         for (px; pBody.rubric.length <= px; px++) {
-          if (pBody.rubric[px].citations.length >= 1) {
+          if (pBody.rubric[px].citations.isNotEmpty) {
             var cx = 0;
             for (cx; pBody.rubric[px].citations.length <= cx; cx++) {
               if (v) {
