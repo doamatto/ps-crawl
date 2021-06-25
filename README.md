@@ -15,9 +15,10 @@ You can get a GitHub (Personal) token [here](https://github.com/settings/tokens)
 To build binaries, use `dart compile exe bin/spy.dart`. Regardless of platform, the `exe` parameter will compile a binary for your OS (Linux, macOS, Windows, et al).
 
 ## Future ideas
-- [ ] Allowing custom PrivacySpy instances (defaults to official)
-- [ ] Typings for expected responses to allow both null-safety and piece of mind
-- [ ] Allowing custom PrivacySpy forks (defaults to official)
+- [ ] ~~Allowing custom PrivacySpy instances (defaults to official)~~ Not going to be added; I want to keep things simple
+- [X] ~~Typings for expected responses to allow both null-safety and piece of mind~~ (It's partial but it's safe by nature due to Dart)
+- [ ] ~~Allowing custom PrivacySpy forks (defaults to official)~~
+- [ ] Disable push to GitHub to show just problems (CI mode, if you will)
 - [ ] Ensure rendering of hydrated content works fine
 - [ ] Ensure weird text (that one apostrophe that is an apostrophe but isn't) doesn't break things
 
