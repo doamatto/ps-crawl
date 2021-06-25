@@ -67,10 +67,12 @@ void main(List<String> arguments) async {
     print(
       "Looks like justice has been served, issues made, and the world saved.",
     );
+    return;
   } else {
     print(
       "It appears there was troubles connecting to the Internet. Make sure you can reach PrivacySpy's website (https://privacyspy.org/api).",
     );
+    return;
   }
 }
 
