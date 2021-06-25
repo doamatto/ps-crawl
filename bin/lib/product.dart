@@ -54,7 +54,7 @@ class RubricQuestion {
   final String category;
   final String slug;
   final String text;
-  final List<String> notes;
+  final List<dynamic> notes;
   final int points;
   final List<RubricOption> options;
 
@@ -82,8 +82,8 @@ class RubricQuestion {
 class RubricSelection {
   final RubricQuestion question;
   final RubricOption option;
-  final List<String> notes;
-  final List<String> citations;
+  final List<dynamic> notes;
+  final List<dynamic> citations;
 
   RubricSelection({
     required this.question,
@@ -128,7 +128,7 @@ class Update {
 class Product {
   final String name;
   final String description;
-  final List<String> hostnames;
+  final List<dynamic> hostnames;
   final List<Uri> sources;
   final String icon;
   final String slug;
