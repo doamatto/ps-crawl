@@ -40,7 +40,9 @@ void main(List<String> arguments) async {
 
   var token = args['github-token'];
   var v = args['verbose'];
-  var gh = GitHub(auth: Authentication.withToken(token));
+  var gh = GitHub(
+    auth: Authentication.withToken(token),
+  );
   if (v) {
     print('[1/8] Authenticating with GitHub');
   }
