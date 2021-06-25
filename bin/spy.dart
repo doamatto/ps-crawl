@@ -119,10 +119,11 @@ search(String slug, GitHub gh, bool v) async {
               body,
               pBody.rubric[px].citations[0],
             )) {
+              var rubricSlug = pBody.rubric[px].question.slug;
               print("[PASS] $rubricSlug passed for $slug.");
             } else {
               if (v) {
-                var rubricSlug = pBody.rubric[px].slug;
+                var rubricSlug = pBody.rubric[px].question.slug;
                 print('[8/8] Generating issue for $slug ($rubricSlug)');
               }
               createIssue(
