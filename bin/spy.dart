@@ -66,12 +66,12 @@ void main(List<String> arguments) async {
 
   var resp = await http.get(db);
   if (v) {
-    print('[2/8] Fetching product index');
+    print('Fetching product index');
   }
   if (resp.statusCode == 200) {
     var jsonRes = await convert.jsonDecode(resp.body);
     if (v) {
-      print('[3/8] Parsing product index into JSON');
+      print('Parsing product index into JSON');
     }
     for (var product in jsonRes) {
       await search(product['slug'], gh, v, ciMode, onlyFail);
@@ -92,19 +92,19 @@ search(String slug, GitHub gh, bool v, bool ciMode, bool onlyFail) async {
   var req = Uri.https('www.privacyspy.org', '/api/v2/products/$slug.json');
   var res = await http.get(req);
   if (v) {
-    print('[4/8] Fetching $slug\'s JSON');
+    print('Fetching $slug\'s JSON');
   }
   if (res.statusCode == 200) {
     var pBody = Product.fromJson(convert.jsonDecode(res.body));
     if (v) {
-      print('[5/8] Parsing $slug\'s JSON');
+      print('Parsing $slug\'s JSON');
     }
     var policies = pBody.sources;
     for (var policy in policies) {
       var url = Uri.parse(policy);
       var resp = await http.get(url);
       if (v) {
-        print('[6/8] Fetching $slug\'s policy ($policy)');
+        print('Fetching $slug\'s policy ($policy)');
       }
       if (resp.statusCode == 200) {
         var body = resp.body;
