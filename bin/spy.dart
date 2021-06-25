@@ -90,7 +90,8 @@ search(String slug, GitHub gh, bool v) async {
     var policies = pBody.sources;
     var i = 0;
     for (i; policies.length <= i; i++) {
-      var resp = await http.get(policies[i]);
+      var url = Uri.parse(policies[i]);
+      var resp = await http.get(url);
       if (v) {
         print('[6/8] Fetching $slug\'s policy ($i)');
       }

@@ -129,7 +129,7 @@ class Product {
   final String name;
   final String description;
   final List<dynamic> hostnames;
-  final List<Uri> sources;
+  final List<dynamic> sources;
   final String icon;
   final String slug;
   final int score;
