@@ -7,9 +7,8 @@ createIssue(
   String quote,
   String rubricSlug,
   String url,
-) {
-  gh.issues.create(
-    RepositorySlug('politiwatch', 'privacyspy'),
+) async {
+  await gh.issues.create(
     IssueRequest(
       title: 'Citation for $product not found for $rubricSlug',
       body:
