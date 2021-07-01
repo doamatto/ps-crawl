@@ -20,8 +20,10 @@ To build binaries, use `dart compile exe bin/spy.dart`. Regardless of platform, 
 - [ ] ~~Allowing custom PrivacySpy forks (defaults to official)~~
 - [X] ~~Disable push to GitHub to show just problems (CI mode, if you will)~~
 - [ ] Ensure rendering of hydrated content works fine
+  - [ ] JSP pages like [Mailfence](https://mailfence.com/en/privacy.jsp)
 - [X] ~~Ensure weird text (that one apostrophe that is an apostrophe but isn't (`(?:")|(?:”)|(?:“)|(?:‟)`)) doesn't break things~~
 - [X] Add handling for more seperations
+- [ ] Fix Markdown links ([#121 of test repo](https://github.com/doamatto/privacyspy/issues/121))
 
 ## Acknowledgments
 This project is licensed under the GNU General Public License version 3.0. You can see a copy of it in the `LICENSE` file in the root of this repository.
