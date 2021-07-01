@@ -5,7 +5,7 @@ bool scrubCitation(String citationSrc, String citation) {
     citation = citation.replaceAll('[â�¦]', '');
     citation = citation.replaceAll(
       RegExp(
-        'r(?:")|(?:”)|(?:“)|(?:‟)',
+        'r(?:\\")',
       ),
       '',
     ); // TODO: integrate into new splitter
