@@ -9,7 +9,6 @@ createIssue(
   String url,
 ) async {
   Stream<Issue> issueList = gh.issues.listAll(
-    labels: ["product", "problem"],
     state: "open",
   );
   if (await issueList.contains(
