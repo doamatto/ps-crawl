@@ -2,6 +2,7 @@ bool scrubCitation(String citationSrc, String citation) {
   List<dynamic> citations = splitCitation(citation);
   for (var citation in citations) {
     citation = citation.replaceAll('[...]', '');
+    citation = citation.replaceAll('[â�¦]', '');
     citation = citation.replaceAll(
       RegExp(
         'r(?:")|(?:”)|(?:“)|(?:‟)',
