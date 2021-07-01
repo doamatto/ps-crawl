@@ -10,6 +10,7 @@ createIssue(
 ) async {
   Stream<Issue> issueList = gh.issues.listAll(
     labels: ["product", "problem"],
+    state: "closed",
   );
   if (await issueList.contains(
     Issue(title: 'Citation for $product not found for $rubricSlug'),
