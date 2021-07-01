@@ -95,7 +95,8 @@ search(String slug, GitHub gh, bool v, bool ciMode, bool onlyFail) async {
     print('Fetching $slug\'s JSON');
   }
   if (res.statusCode == 200) {
-    var pBody = Product.fromJson(convert.jsonDecode(res.body));
+    String src = convert.Utf8Decoder().convert(res.bodyBytes);
+    var pBody = Product.fromJson(convert.jsonDecode(src));
     if (v) {
       print('Parsing $slug\'s JSON');
     }
