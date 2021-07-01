@@ -9,6 +9,7 @@ bool scrubCitation(String citationSrc, String citation) {
       ),
       '',
     ); // TODO: integrate into new splitter
+    citation = citation.replaceAll("&nbsp;", " ");
 
     if (!citationSrc.contains(citation)) {
       return false;
