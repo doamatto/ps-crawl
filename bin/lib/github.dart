@@ -8,6 +8,19 @@ createIssue(
   String rubricSlug,
   String url,
 ) async {
+  Stream<Issue> issueList = gh.issues.listAll(
+    labels: ["product", "problem"],
+  );
+  if (await issueList.contains(
+    Issue(title: 'Citation for $product not found for $rubricSlug'),
+  )) {
+    return print(
+      """
+        $product issue for $rubricSlug already exists.
+        Skipping creation of new issue.
+      """,
+    );
+  }
   await gh.issues.create(
     IssueRequest(
       title: 'Citation for $product not found for $rubricSlug',
