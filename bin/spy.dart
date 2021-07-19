@@ -64,7 +64,8 @@ void main(List<String> arguments) async {
   }
   var db = Uri.https('www.privacyspy.org', '/api/v2/index.json');
 
-  var resp = await http.get(db);
+  String userAgent = 'PrivacySpy Crawler - Unreleased - https://www.doamatto.xyz/privacyspy-crawler'
+  var resp = await http.get(db, {'User-Agent': userAgent});
   if (v) {
     print('Fetching product index');
   }
@@ -91,6 +92,7 @@ void main(List<String> arguments) async {
 search(String slug, GitHub gh, bool v, bool ciMode, bool onlyFail) async {
   var req = Uri.https('www.privacyspy.org', '/api/v2/products/$slug.json');
   var res = await http.get(req);
+  var res = await http.get(req, {'User-Agent': userAgent});
   if (v) {
     print('Fetching $slug\'s JSON');
   }
@@ -103,7 +105,7 @@ search(String slug, GitHub gh, bool v, bool ciMode, bool onlyFail) async {
     var policies = pBody.sources;
     for (var policy in policies) {
       var url = Uri.parse(policy);
-      var resp = await http.get(url);
+      var resp = await http.get(url, {'User-Agent': userAgent});
       if (v) {
         print('Fetching $slug\'s policy ($policy)');
       }
