@@ -1,12 +1,16 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"flag"
 	"log"
 	"os"
 	"regexp"
 	"strings"
+
+	"github.com/google/go-github/v46/github"
+	"golang.org/x/oauth2"
 )
 
 var runDry bool
@@ -16,6 +20,8 @@ var ghToken string
 const userAgent := "maatt DOT fr/ps-crawl"
 const indexUrl := "https://www.privacyspy.org/api/v2/index.json"
 const productUrl := "https://www.privacyspy.org/api/v2/products/"
+const repoOwner := "politiwatch"
+const repoName := "privacyspy"
 
 func init() {
 	// Fetch dry-run flag
@@ -100,7 +106,7 @@ func main() {
 		// Parse product sources
 		policies := product.sources;
 		for _, policy := range policies {
-			req, err = http.NeqRequest("GET", policy, nil)
+			req, err = http.NewRequest("GET", policy, nil)
 			req.header.Set("User-Agent", "maatt DOT fr/ps-crawl")
 			res, err := client.Do(req)
 			defer res.Body.Close()
@@ -130,9 +136,8 @@ func main() {
 
 							// Check if citation is in source
 							if (!strings.Contains(body, citation)) {
-								// return false
-							} else {
-								// return true
+								log.Println("Found issue in %v. Creating issue...", product.name)
+								createIssue(product.name, citationOrig, rubricItem.question.slug, policy)
 							}
 						}
 					}
@@ -142,4 +147,48 @@ func main() {
 		}
 	}
 	log.Println("Looks like justice has been served, issues made, and the world saved.")
+}
+
+// Generate issue using GitHub API
+//
+// It makes more sense to use the official API in this case becuase
+// implementing the REST API would not only take a significant amount
+// of time, but also require serious maintainership. This crawler
+// should be able to be "set it and forget it."
+func createIssue(product string, citation string, rubricSlug string, url string) bool {
+	if dryRun { return false }
+
+	// Build GitHub API connection
+	ctx := context.Background()
+	ts := oauth2.StaticTokenSource(&oauth2.Token{AccessToken: ghToken})
+	tc := oauth2.NewClient(ctx, ts)
+	client := github.NewClient(tc)
+
+	// Check if issue already exists
+	issues, _, err := client.IssuesService.ListByRepo(ctx, repoOwner, repoName, {
+		State: "open"
+	})
+	issueName := strings.Join([]{"Citation for",product,"not found for",rubricSlug}, " ")
+	i := false
+	for _, v := range issues {
+		if issueName == v.Title {
+			i = true
+		}
+	}
+
+	// Build issue
+	if !i {
+		issue, _, err := client.IssuesService.Create(ctx, repoOwner, repoName, &github.IssueRequest{
+			Title: issueName,
+			Body: "",
+			Labels: [""],
+		})
+		if err != nil {
+			log.Panicln("Could not create issue. Halting program to prevent rate-limiting.")
+			return os.Exit(1)
+		}
+		log.Println("Issue created. See %v.", issue.URL)
+	} else {
+		log.Println("Issue already exists. Skipping creation of issue.")
+	}
 }
