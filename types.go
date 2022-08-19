@@ -18,7 +18,7 @@ type Product struct {
 	icon string
 	slug string
 	score int
-	parent string
+	parent string `json:"parent,omitempty"`
 	children any
 	rubric []interface{
 		question[]interface{
