@@ -1,55 +1,55 @@
 package main
 
 type Index struct {
-	name string
-	hostnames {}string
-	slug string
-	score int
-	icon string
-	description string
-	lastUpdated string `json:"last_updated"`
+	name string `json:"name"`
+	hostnames []string `json:"hostnames"`
+	slug string `json:"slug"`
+	score float64 `json:"score"`
+	icon string `json:"icon"`
+	description string `json:"description"`
+	lastUpdated string `json:"lastUpdated"`
 }
 
 type Product struct {
-	name string
-	description string
-	hostnames {}string
-	sources {}string
-	icon string
-	slug string
-	score int
+	name string `json:"name"`
+	description string `json:"description"`
+	hostnames []string `json:"hostnames"`
+	sources []string `json:"sources"`
+	icon string `json:"icon"`
+	slug string `json:"slug"`
+	score float64 `json:"score"`
 	parent string `json:"parent,omitempty"`
-	children any
-	rubric []interface{
-		question[]interface{
-			category string
-			slug string
-			text string
-			notes []interface{}string
-			points int
-			options []interface{
-				id string
-				text string
-				percent int
+	children []interface{} `json:"children,omitempty"`
+	rubric []struct{
+		question struct{
+			category string `json:"category"`
+			slug string `json:"slug"`
+			text string `json:"text"`
+			notes []interface{} `json:"notes"`
+			points int `json:"points"`
+			options []struct{
+				id string `json:"id"`
+				text string `json:"text"`
+				percent int `json:"percent"`
 			}
 		}
-		option []interface{
-			id string
-			text string
-			percent int
+		option []struct{
+			id string `json:"id"`
+			text string `json:"text"`
+			percent int `json:"percent"`
 		}
-		notes []interface{}string
-		citations []interface{}string
-		value string
-	}
-	updates []interface{}
-	lastUpdated string `json:"last_updated`
-	contributors []interface{
-		slug string
-		role string
-		name string
-		website string
-		github string
-		email string
-	}
+		notes []struct{} `json:"notes"`
+		citations []string `json:"citations"`
+		value string `json:"value"`
+	} `json:"rubric"`
+	updates []struct{} `json:"updates"`
+	lastUpdated string `json:"lastUpdated`
+	contributors []struct{
+		slug string `json:"slug"`
+		role string `json:"role"`
+		name string `json:"name"`
+		website string `json:"website"`
+		github string `json:"github"`
+		email string `json:"email"`
+	} `json:"contributors"`
 }
