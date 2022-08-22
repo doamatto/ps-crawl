@@ -116,7 +116,7 @@ func main() {
 			log.Panicln(err)
 			os.Exit(1)
 		}
-		err = json.Unmarshal(resData, &product)
+		err = json.Unmarshal(resData, &product) // BREAKS HERE
 		if err != nil {
 			log.Panicln("Couldn't parse data from product data.")
 			log.Panicln(err)
