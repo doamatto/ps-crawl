@@ -1,5 +1,7 @@
 # PrivacySpy Bot
 
+**NOTE:** This project is actively being rewriten. See the [`go-rewrite` branch](https://github.com/doamatto/ps-crawl/tree/go-rewrite) for more information.
+
 ## Usage
 Using this bot is incredibly easy. After building it (see next section or click [here](#building)), you can run the bot by doing:
 ```sh
