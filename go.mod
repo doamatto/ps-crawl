@@ -1,4 +1,4 @@
-module github.com/doamatto/ps-crawler
+module github.com/doamatto/ps-crawl
 
 go 1.18
 
