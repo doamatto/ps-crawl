@@ -19,8 +19,6 @@ You can get a GitHub (Personal) token [here](https://github.com/settings/tokens)
   - [ ] JSP pages like [Mailfence](https://mailfence.com/en/privacy.jsp)
 - Ensure weird text (that one apostrophe that is an apostrophe but isn't (`(?:")|(?:”)|(?:“)|(?:‟)`)) doesn't break things
 - [ ] Add handling for more seperations
-- [ ] Fix Markdown links ([#121 of test repo](https://github.com/doamatto/privacyspy/issues/121))
-  - [ ] Fix HTML links ([#176 of test repo](https://github.com/doamatto/privacyspy/issues/176))
 
 ## Acknowledgments
 This project is licensed under the GNU General Public License version 3.0. You can see a copy of it in the `LICENSE` file in the root of this repository.
